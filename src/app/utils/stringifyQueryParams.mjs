@@ -5,7 +5,7 @@ export default (queryParams) => {
         return '';
     }
 
-    const queryParamsArr = toPairs(queryParams);
+    const queryParamsArr = toPairs(queryParams).filter(([, value]) => (value !== undefined && value !== null));
 
     if (queryParamsArr.length === 0) {
         return '';
