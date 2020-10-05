@@ -131,6 +131,8 @@ const handleLetter = async (message) => {
             text: 'Спасибо! Мы типа сохранили ваш текст, что с ним дальше делать хрен знает',
         },
     });
+
+    delete contexts[chatId];
 };
 
 const handleMessage = (message) => {
