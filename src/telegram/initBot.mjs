@@ -1,5 +1,6 @@
 import getUpdates from './getUpdates';
 import { sendRequest } from './utils';
+import { initLoggerBot } from './logger';
 
 const initBot = async () => {
     let body;
@@ -22,7 +23,7 @@ const initBot = async () => {
 
     console.log('Init bot:', body.result);
 
-    console.log('commands', (await sendRequest('getMyCommands')).body);
+    await initLoggerBot();
 
     getUpdates();
 };

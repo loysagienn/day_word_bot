@@ -13,3 +13,5 @@ export { default as generateRandomColor } from './generateRandomColor';
 export { default as generateId } from './generateId';
 
 export { default as memoize } from './memoize';
+
+export { default as pluralize } from './pluralize';

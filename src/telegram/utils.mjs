@@ -28,3 +28,26 @@ export const sendRequest = (request, {
         responseType: 'json',
     });
 };
+
+export const getMessageSender = (message) => {
+    const {
+        id,
+        username,
+        first_name: firstName,
+        last_name: lastName,
+    } = message.from;
+
+    if (username) {
+        return `@${username}`;
+    }
+
+    if (firstName) {
+        if (lastName) {
+            return `${firstName} ${lastName}`;
+        }
+
+        return firstName;
+    }
+
+    return id;
+};
