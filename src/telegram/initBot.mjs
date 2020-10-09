@@ -1,6 +1,7 @@
 import getUpdates from './getUpdates';
 import { sendRequest } from './utils';
 import { initLoggerBot } from './logger';
+import { initContexts } from './contexts';
 
 const initBot = async () => {
     let body;
@@ -21,11 +22,13 @@ const initBot = async () => {
         throw new Error('Init bot error');
     }
 
+    const contexts = await initContexts();
+
     console.log('Init bot:', body.result);
 
     await initLoggerBot();
 
-    getUpdates();
+    getUpdates(contexts);
 };
 
 export default initBot;

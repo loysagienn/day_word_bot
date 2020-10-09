@@ -2,7 +2,7 @@ import handleUpdate from './handleUpdate';
 
 import { sendRequest } from './utils';
 
-const getUpdates = async (offset) => {
+const getUpdates = async (contexts, offset) => {
     let body;
 
     try {
@@ -14,7 +14,7 @@ const getUpdates = async (offset) => {
     } catch (error) {
         console.log('Get updates request error', error);
 
-        getUpdates(offset);
+        getUpdates(contexts, offset);
 
         return;
     }
@@ -28,18 +28,18 @@ const getUpdates = async (offset) => {
     const updates = body.result;
 
     if (updates.length === 0) {
-        getUpdates(offset);
+        getUpdates(contexts, offset);
 
         return;
     }
 
-    updates.forEach(handleUpdate);
+    updates.forEach((update) => handleUpdate(contexts, update));
 
     const lastUpdate = updates[updates.length - 1];
 
     const lastUpdateId = lastUpdate.update_id;
 
-    getUpdates(lastUpdateId + 1);
+    getUpdates(contexts, lastUpdateId + 1);
 };
 
 export default getUpdates;
