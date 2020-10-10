@@ -26,6 +26,6 @@ export const SHOW_ANOTHER_WORD_KEYBOARD = [
     ],
 ];
 
-export const DEFAULT_LEFT_TIME = 600;
+export const DEFAULT_LEFT_TIME = 30;
 
 export const INTERVAL = 5;

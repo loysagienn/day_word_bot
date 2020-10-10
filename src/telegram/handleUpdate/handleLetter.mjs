@@ -3,13 +3,8 @@ import { SHOW_ANOTHER_WORD_KEYBOARD } from '../constants';
 
 const handleLetter = async (contexts, message) => {
     const chatId = message.chat.id;
-    const context = contexts.remove(chatId);
 
-    if (!context) {
-        return;
-    }
-
-    clearInterval(context.intervalId);
+    contexts.clearTimer(chatId);
 
     await sendRequest('sendMessage', {
         method: 'POST',

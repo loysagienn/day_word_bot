@@ -4,7 +4,7 @@ import { SET_TIMER_TEXT, SHOW_WORD_TEXT, SHOW_ANOTHER_WORD_TEXT } from '../const
 
 import sendDescription from './sendDescription';
 import sendWordOfDay from './sendWordOfDay';
-import sendTimerStart from './sendTimerStart';
+import timerStart from './timerStart';
 import handleLetter from './handleLetter';
 
 const handleDefaultMessage = (message) => {
@@ -16,7 +16,7 @@ const handleMessage = (contexts, message) => {
 
     const sender = getMessageSender(message);
 
-    if (contexts.has(chatId)) {
+    if (contexts.timerIsActive(chatId)) {
         logMessage(`${sender} отправил письмо:\n${message.text}`);
 
         return handleLetter(contexts, message);
@@ -37,7 +37,7 @@ const handleMessage = (contexts, message) => {
     if (message.text === SET_TIMER_TEXT) {
         logMessage(`${sender} запустил таймер`);
 
-        return sendTimerStart(contexts, message);
+        return timerStart(contexts, message);
     }
 
     logMessage(`${sender} отправил сообщение:\n${message.text}`);
